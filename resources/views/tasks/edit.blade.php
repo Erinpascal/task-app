@@ -27,7 +27,8 @@
 
         <br>
                                 
-
+        @method('PUT')
+                            @csrf()
                                   <input type="submit" value="Save" />
 
 
