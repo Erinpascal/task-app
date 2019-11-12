@@ -1,23 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+<a class="btn btn-danger" href="{{route('tasks.create')}}">
+        <i class="large material-icons">add</i>
+    </a>
+  <h2><p>To Do List</p>      </h2>
+        
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Description</th>
+        <th>Task Date</th>
+        <th>Action</th>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+      </tr>
+    </thead>
+    <tbody>
+      
+      @foreach($tasks as $tasks)
+      <tr>
+        <td>{{$tasks->name}}</td>
+        <td>{{$tasks->description}}</td>
+        <td>{{$tasks->task_date}}</td>
+        <td> @if(Auth::user() == $tasks->user)
+    |<a href="{{ route('task.delete',['task_id' => $tasks->id]) }}">Delete</a>|<a href="{{route('tasks.edit',$tasks->id)}}">Edit</a></td>
+    @endif
+        </tr>
+        @endforeach
+      
+     
+      
+    </tbody>
+  </table>
 </div>
 @endsection

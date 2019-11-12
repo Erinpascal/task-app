@@ -45,7 +45,7 @@ class TasksController extends Controller
     $task->task_date = $request['task_date'];
     $task->user_id = request()->user()->id;
     $task->save();
-    return redirect('/tasks');
+    return redirect('/home');
     }
 
     /**
@@ -89,8 +89,6 @@ class TasksController extends Controller
         $tasks->task_date = $request->input('task_date');
         $tasks->update();
         return back();
-
-   
 
     }
 

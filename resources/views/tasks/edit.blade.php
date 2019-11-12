@@ -1,5 +1,7 @@
 
+@extends('layouts.app')
 
+@section('content')
 <div class="container">
   <div class="row">
   	<form action="{{route('tasks.update',['id'=>$tasks->id])}}" method="POST" enctype="multipart/form-data">
@@ -36,3 +38,4 @@
                                 
                            </div>
 </div>
+@endsection
