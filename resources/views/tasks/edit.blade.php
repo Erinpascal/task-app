@@ -5,7 +5,7 @@
 <div class="container">
   <div class="row">
   	<form action="{{route('tasks.update',['id'=>$tasks->id])}}" method="POST" enctype="multipart/form-data">
-
+    {{ csrf_field() }}
 
 
          <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
@@ -29,8 +29,7 @@
 
         <br>
                                 
-        @method('PUT')
-                            @csrf()
+       
                                   <input type="submit" value="Save" />
 
 
