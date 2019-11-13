@@ -24,6 +24,9 @@ Route::resource('tasks', 'TasksController');
 
 Route::get('/delete/{task_id}','TasksController@getDeleteTask')->name('task.delete');
 
+Route::patch('/task/{id}', 'TasksController@edittask');
+
+
 
 
 

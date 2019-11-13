@@ -90,12 +90,7 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-     $tasks = Task::find($id);
-        $tasks->name = $request->input('name');
-        $tasks->description = $request->input('description');
-        $tasks->task_date = $request->input('task_date');
-        $tasks->update();
-        return back();
+     
 
     }
 
@@ -120,5 +115,18 @@ class TasksController extends Controller
   }
   $tasks->delete();
   return back();
+}
+
+
+public function edittask(Request $request, $id)
+{
+   
+    $tasks = Task::find($id);
+    $tasks->name = $request->input('name');
+    $tasks->description = $request->input('description');
+    $tasks->task_date = $request->input('task_date');
+    $tasks->update();
+    return redirect('/home');
+    
 }
 }

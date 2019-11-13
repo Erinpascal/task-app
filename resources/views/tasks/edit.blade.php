@@ -4,8 +4,9 @@
 @section('content')
 <div class="container">
   <div class="row">
-  	<form action="{{route('tasks.update',['id'=>$tasks->id])}}" method="POST" enctype="multipart/form-data">
-    {{ csrf_field() }}
+  <form action="/task/{{$tasks->id}}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
 
 
          <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
