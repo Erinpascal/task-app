@@ -24,11 +24,22 @@
         <br>
   <div class="control-form">
 
-          <label for="task_date"> Description</label>
+          <label for="task_date"> Task_date</label>
         <input type="date" name="task_date" id="task_date" value="{{Request::old('task_date') ? : $tasks->task_date }}">
     </div>
 
         <br>
+
+        <div class="form-group">
+                            <label for="status">Task Status</label>
+                            <select name="status">
+                               <option>Pending</option>
+                            <option>completed</option>
+                            <option>uncompleted</option>
+                            </select>
+                           
+                            
+                        </div>
                                 
        
                                   <input type="submit" value="Save" />

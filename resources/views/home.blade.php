@@ -16,6 +16,8 @@
         <th>Task Name</th>
         <th>Task Description</th>
         <th>Task Date</th>
+         <th>Task Status</th>
+
         <th>Action</th>
 
       </tr>
@@ -27,6 +29,7 @@
         <td>{{$tasks->name}}</td>
         <td>{{$tasks->description}}</td>
         <td>{{$tasks->task_date}}</td>
+        <td>{{$tasks->status}}</td>
         <td> @if(Auth::user() == $tasks->user)
     |<a href="{{ route('task.delete',['task_id' => $tasks->id]) }}">Delete</a>|<a href="{{route('tasks.edit',$tasks->id)}}">Edit</a></td>
     @endif

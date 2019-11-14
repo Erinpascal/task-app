@@ -41,15 +41,16 @@ class TasksController extends Controller
     {
 
         $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'task_date' => 'required',
+            'name' =>  'required|min:6|max:50|alpha',
+            'description' =>  'required|min:6|max:50',
+            'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
         ]);
         $task = new Task;
     $task->name = $request['name'];
      $task->description = $request['description'];
     $task->task_date = $request['task_date'];
+
     $task->user_id = request()->user()->id;
     $task->save();
     return redirect('/home');
@@ -125,8 +126,21 @@ public function edittask(Request $request, $id)
     $tasks->name = $request->input('name');
     $tasks->description = $request->input('description');
     $tasks->task_date = $request->input('task_date');
+    $tasks->status = $request->input('status');
     $tasks->update();
     return redirect('/home');
     
 }
+
+public function toggleTask(Request $request, $id)
+    {
+       
+        $tasks = User::find($id);
+        
+            $tasks->status = $request->status;
+            $tasks->update();
+        return back();
+        
+    }
+
 }
