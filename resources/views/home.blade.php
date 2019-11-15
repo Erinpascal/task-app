@@ -16,7 +16,7 @@
         <th>Task Name</th>
         <th>Task Description</th>
         <th>Task Date</th>
-         <th>Task Status</th>
+         <th>Due Date</th>
 
         <th>Action</th>
 
