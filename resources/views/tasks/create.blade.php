@@ -53,11 +53,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                        <label for="gender">Status<label>
-                        <input type="radio" name="status" value ="completed">completed
-                        <input type="radio" name="status" value ="uncompleted">uncompleted
-                         </div>
+                     
 
 
 

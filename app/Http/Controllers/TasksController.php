@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use App\Status;
+
 use App\User;
 use Auth;
 
@@ -46,10 +48,15 @@ class TasksController extends Controller
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
         ]);
+
+
+
+
         $task = new Task;
     $task->name = $request['name'];
      $task->description = $request['description'];
     $task->task_date = $request['task_date'];
+    $task->status_id = 1 ;
 
     $task->user_id = request()->user()->id;
     $task->save();
@@ -75,8 +82,13 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
+        $status = Status::orderBy('name','asc')->get();
         $tasks = Task::find($id);
-    return view('tasks.edit')->with('tasks',$tasks);
+    return view('tasks.edit')->with([
+             'tasks'=> $tasks,
+
+                'status' => $status,
+]);
 
     }
 
@@ -121,12 +133,19 @@ class TasksController extends Controller
 
 public function edittask(Request $request, $id)
 {
+
+      $this->validate($request, [
+            'name' =>  'required|min:6|max:50|alpha',
+            'description' =>  'required|min:6|max:50',
+            'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
+
+        ]);
    
     $tasks = Task::find($id);
     $tasks->name = $request->input('name');
     $tasks->description = $request->input('description');
     $tasks->task_date = $request->input('task_date');
-    $tasks->status = $request->input('status');
+    $tasks->status_id  = $request->input('status');
     $tasks->update();
     return redirect('/home');
     
