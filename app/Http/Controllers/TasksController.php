@@ -43,7 +43,7 @@ class TasksController extends Controller
     {
 
         $this->validate($request, [
-            'name' =>  'required|min:6|max:50',
+            'name' =>  ['required', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
             'description' =>  'required|min:6|max:50',
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
@@ -133,8 +133,8 @@ public function edittask(Request $request, $id)
 {
 
       $this->validate($request, [
-              'name' => 'required|min:6',
-            'description' =>  'required|min:6|max:50',
+        'name' =>  ['required', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+        'description' =>  'required|min:6|max:50',
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
         ]);
