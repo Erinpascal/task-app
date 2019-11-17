@@ -31,15 +31,12 @@
         <br>
 
         <div class="form-group">
-                           <select name="status">
-                                                            <label>Status</label>
-
-                                    <option value="" disabled>Choose a status</option>
-                                    
-                                    @foreach($status as $status)
-                                        <option value="{{$status->id}}" {{old('status') ? 'selected' : '' }} {{ $status->empStatus==$status ? 'selected' : '' }} >{{$status->name}}</option>
-                                    @endforeach
-                                </select>
+        <label for="status">Status</label>
+                            <select name="status" class="form-control">
+                               <option>pending</option>
+                            <option>completed</option>
+                            
+                            </select>
                            
                             
                         </div>
