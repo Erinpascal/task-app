@@ -43,7 +43,7 @@ class TasksController extends Controller
     {
 
         $this->validate($request, [
-            'name' =>  'required|min:6|max:50|alpha',
+            'name' =>  'required|min:6|max:50',
             'description' =>  'required|min:6|max:50',
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
