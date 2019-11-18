@@ -15,8 +15,9 @@
       <tr>
         <th>Task Name</th>
         <th>Task Description</th>
-        <th>Task Date</th>
+        <th> Date Created</th>
          <th>Due Date</th>
+         <th>Status</th>
 
         <th>Action</th>
 
@@ -28,6 +29,7 @@
       <tr>
         <td>{{$tasks->name}}</td>
         <td>{{$tasks->description}}</td>
+        <td>{{$tasks->created_at}}</td>
         <td>{{$tasks->task_date}}</td>
          <td>{{$tasks->status}}</td>
         <td> @if(Auth::user() == $tasks->user)
