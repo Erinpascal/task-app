@@ -11,6 +11,18 @@ use Auth;
 
 class TasksController extends Controller
 {
+
+
+       /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +55,7 @@ class TasksController extends Controller
     {
 
         $this->validate($request, [
-            'name' =>  ['required', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+            'name' =>  ['required', 'regex: /^[a-zA-Z ]*$/'],
             'description' =>  'required|min:6|max:50',
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
@@ -133,7 +145,7 @@ public function edittask(Request $request, $id)
 {
 
       $this->validate($request, [
-        'name' =>  ['required', 'regex:/^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ0-9_.,() ]+$/'],
+        'name' =>  ['required', 'regex: /^[a-zA-Z ]*$/'],
         'description' =>  'required|min:6|max:50',
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
