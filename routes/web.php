@@ -19,16 +19,34 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('tasks', 'TasksController');
+Route::resource('task', 'TasksController');
 
 
 Route::get('/delete/{task_id}','TasksController@getDeleteTask')->name('task.delete');
 
-Route::patch('/task/{id}', 'TasksController@edittask');
+Route::post('/task/{id}', 'TasksController@edittask');
 Route::patch('/status/{id}', 'TasksController@toggleTask');
 
 
 
+Route::group(['prefix'=>'admin','middleware'=> 'auth'], function () {
+	Route::get('/', function () {
+		return view('admin.index');
+	})->name('admin.index');
+	 
+	
 
+});
+
+
+Route::resource('organisation', 'OrganisationController');
+Route::get('/delete/{organisation_id}','OrganisationController@getDeleteOrganisation')->name('organisation.delete');
+
+Route::post('/organisation/{id}', 'OrganisationController@editorganisation');
+
+Route::post('/members/{id}', 'OrganisationController@organisationmembers');
+Route::post('/home/{id}', 'OrganisationController@toggleUser');
+
+// Route::patch('/status/{id}', 'OrganisationController@toggleOrganisation');
 
 

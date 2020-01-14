@@ -1,22 +1,103 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<div class="container">
-  <div class="row">
 
 
-  	@foreach($tasks as $tasks)
+            <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+        <a class="btn btn-danger pull-right" href="{{route('task.create')}}">
+            Add Task
+            </a>
+        </div>
+    </div>
 
-  	{{$tasks->name}}<br>
+<div class="card">
+    
 
-  	 @if(Auth::user() == $tasks->user)
-    |<a href="{{ route('task.delete',['task_id' => $tasks->id]) }}">Delete</a>|<a href="{{route('tasks.edit',$tasks->id)}}">Edit</a><br>
-    @endif
+    <div class="card-body">
 
-<hr>
+        <div class="table-responsive">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Product">
+                <thead>
+                    <tr>
+                       
+                        <th>
+                            Task Name
+                        </th>
 
-  	@endforeach
+                         <th>
+                            Description                       
+                          </th>
+                          <th>
+                            Status
+                        </th>
+                         <th>
+                            Overdue
+                        </th>
+                        <th>
+                            Action
+                        </th>
+      
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                     	@foreach($tasks as $tasks)
 
-  </div>
+                     	 <tr data-entry-id="{{ $tasks->id }}">
+                            
+                            <td>
+
+                                                     
+                               {{$tasks->name}}
+                            </td>
+
+                        <td>
+
+                                                     
+                               {{$tasks->description}}
+                            </td>
+
+                              <td>
+
+                                                     
+                               {{$tasks->status}}
+                            </td>
+
+
+                             <td>
+
+                                                     
+                               {{$tasks->task_date}}
+                            </td>
+
+                               <td>
+                                                                   @if(Auth::user() == $tasks->user)
+
+          
+                    <a href="{{route('task.edit',$tasks->id)}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+
+                    
+
+                     <a href="{{ route('task.delete',['task_id' => $tasks->id]) }}"  class="btn btn-danger" ><i class="fas fa-trash"></i></a>
+                     @endif
+
+
+
+
+           
+           </td>
+                        </tr>
+
+                         @endforeach
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
 </div>
+
+
+
 @endsection

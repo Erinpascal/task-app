@@ -113,6 +113,7 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
      
+    dd('me');  echo "die";
 
     }
 
@@ -148,8 +149,8 @@ public function edittask(Request $request, $id)
         'description' =>  'required|min:6|max:50',
             'task_date' => 'required|date|date_format:Y-m-d|after:yesterday',
 
-        ]);
-   
+        ]);   
+
     $tasks = Task::find($id);
     $tasks->name = $request->input('name');
     $tasks->description = $request->input('description');
@@ -157,7 +158,7 @@ public function edittask(Request $request, $id)
     $tasks->status = $request->input('status');
 
     $tasks->update();
-    return redirect('/home');
+    return redirect('task');
     
 }
 

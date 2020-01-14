@@ -1,18 +1,23 @@
+
 @extends('layouts.admin')
 
 @section('content')
+
+
+
 <div class="card">
     
  <div class="card-body">
-<div class="panel-heading">Task</div>
+<div class="panel-heading">Create Organisation</div>
  <div class="panel-body">
-<form class="form-horizontal" action="{{ route('task.store') }}" method="post" style="width:1500px; margin-right:auto; margin-left:auto;">
+<form class="form-horizontal" action="/organisation/{{$organisation->id}}" method="post" style="width:1500px; margin-right:auto; margin-left:auto;">
   {{ csrf_field() }}
+{{ method_field('PATCH') }}
   <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Organisation Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{Request::old('name') ? : $organisation->name }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -23,30 +28,36 @@
                         </div>
 
 
-  <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">Task Description</label>
+  <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Organisation Address</label>
 
                             <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" >
+                                <input id="address" type="text" class="form-control" name="address" value="{{Request::old('address') ? : $organisation->address }}" >
 
-                                @if ($errors->has('description'))
+                                @if ($errors->has('address'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
 
-                        <div class="form-group{{ $errors->has('task_date') ? ' has-error' : '' }}">
-                            <label for="task_date" class="col-md-4 control-label">Task Date</label>
+                      
+
+                        <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
+                            <label for="status" class="col-md-4 control-label">Task Status</label>
 
                             <div class="col-md-6">
-                                <input id="task_date" type="date" class="form-control" name="task_date" value="{{ old('task_date') }}" required autofocus>
-
-                                @if ($errors->has('task_date'))
+                                <div class="col-md-6">
+                                  <select name="status" class="form-control">
+                               <option>pending</option>
+                            <option>completed</option>
+                            
+                            </select>
+                                @if ($errors->has('status'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('task_date') }}</strong>
+                                        <strong>{{ $errors->first('status') }}</strong>
                                     </span>
                                 @endif
                             </div>
