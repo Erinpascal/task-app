@@ -59,8 +59,13 @@
                     <a href="{{route('organisation.show',$organisation->id)}}"  class="btn btn-warning" ><i class="fas fa-eye"></i></a>
 
                     
-                    <a href="{{ route('organisation.delete',['organisation_id' => $organisation->id]) }}"  class="btn btn-danger" ><i class="fas fa-trash"></i></a>
-
+                    <!-- <a href="{{ route('organisation.delete',['organisation_id' => $organisation->id]) }}"  class="btn btn-danger" ><i class="fas fa-trash"></i></a> -->
+                   
+                    <form action="{{ route('organisation.destroy', $organisation->id) }}" method="POST"  style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form>
 
 
            

@@ -73,7 +73,19 @@
                     </ul>
                 </li> -->
 
+                    
+
                  @if(Auth::user()->role == '1')
+
+                  <li class="nav-item">
+                            <a href="{{route('user.index')}}" class="nav-link">
+
+                                    <i class="fa-fw fas fa-user nav-icon">
+
+                                    </i>
+                                     Usermanagement
+                                </a>
+                            </li>
 
 
                
